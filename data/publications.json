@@ -1,4 +1,375 @@
 {
-  "generated_at": null,
-  "publications": []
+  "generated_at": "2026-07-25T15:40:18.424158+00:00",
+  "publications": [
+    {
+      "key": "10.14429/djlit.21275",
+      "title": "From Mention to Merit",
+      "authors": [
+        "Sandra M K",
+        "Rupesh Kumar A"
+      ],
+      "year": "2026",
+      "venue": "DESIDOC Journal of Library & Information Technology",
+      "doi": "10.14429/djlit.21275",
+      "url": "https://doi.org/10.14429/djlit.21275"
+    },
+    {
+      "key": "from-mention-to-merit-citation-context-analysis-of-top-cited-journals-in-digital-humanities::2026",
+      "title": "From Mention to Merit: Citation Context Analysis of Top Cited Journals in Digital Humanities",
+      "authors": [
+        "Rupesh Kumar",
+        "Sandra M K"
+      ],
+      "year": "2026",
+      "venue": "DESIDOC Journal of Library and Information Technology",
+      "doi": null,
+      "url": "https://publicationsdrdo.in/index.php/djlit/article/view/21275"
+    },
+    {
+      "key": "beyond-citescore-exploring-citation-concentration-in-digital-humanities-journals::2026",
+      "title": "Beyond CiteScore: Exploring Citation Concentration in Digital Humanities Journals",
+      "authors": [
+        "Rupesh Kumar",
+        "Sandra M K"
+      ],
+      "year": "2026",
+      "venue": "Journal of Indian Library Association",
+      "doi": null,
+      "url": "https://journal.ilaindia.net/index.php/lib/article/view/896"
+    },
+    {
+      "key": "10.1007/s11192-025-05527-4",
+      "title": "Citation dynamics and altmetric trends of retracted publications in Indian-funded research: pre and post retraction analysis",
+      "authors": [
+        "Devanath P. R.",
+        "Rupesh Kumar A.",
+        "Devanath P R"
+      ],
+      "year": "2026",
+      "venue": "Scientometrics",
+      "doi": "10.1007/s11192-025-05527-4",
+      "url": "https://doi.org/10.1007/s11192-025-05527-4"
+    },
+    {
+      "key": "beyond-the-book-expanding-the-role-of-academic-libraries-through-innovation-and-transformation::2026",
+      "title": "Beyond the Book: Expanding the Role of Academic Libraries through Innovation and Transformation",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2026",
+      "venue": "Kannur University",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "10.14429/djlit.20870",
+      "title": "Citation Inequality Among Top NIRF-Ranked Universities",
+      "authors": [
+        "Simya K",
+        "Rupesh Kumar A"
+      ],
+      "year": "2025",
+      "venue": "DESIDOC Journal of Library &amp; Information Technology",
+      "doi": "10.14429/djlit.20870",
+      "url": "https://doi.org/10.14429/djlit.20870"
+    },
+    {
+      "key": "10.62656/sijss.v23i3.1954",
+      "title": "UN Sustainable Development Goals Research: Insights from Bibliometric Analysis of Top NIRF-Ranked Universities",
+      "authors": [
+        "Simya K",
+        "Rupesh Kumar A",
+        "Sandra M K"
+      ],
+      "year": "2025",
+      "venue": "South India Journal of Social Sciences",
+      "doi": "10.62656/sijss.v23i3.1954",
+      "url": "https://doi.org/10.62656/sijss.v23i3.1954"
+    },
+    {
+      "key": "10.6025/ijis/2025/17/1/29-40",
+      "title": "Scholarly Literature in Digital Humanities: A Comparative Analysis of Open Access and Non-Open Access Publications",
+      "authors": [
+        "Sandra M K",
+        "Rupesh Kumar A",
+        "Rupesh Kumar"
+      ],
+      "year": "2025",
+      "venue": "International Journal of Information Studies",
+      "doi": "10.6025/ijis/2025/17/1/29-40",
+      "url": "https://doi.org/10.6025/ijis/2025/17/1/29-40"
+    },
+    {
+      "key": "10.56042/alis.v72i3.21229",
+      "title": "CSIR-Funded Research in India: Insights from Bibliometric and Altmetric Analysis",
+      "authors": [
+        "Devanath, P.R.",
+        "Rupesh Kumar, A.",
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "Annals of Library and Information Studies",
+      "doi": "10.56042/alis.v72i3.21229",
+      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-105017984584&partnerID=MN8TOARS"
+    },
+    {
+      "key": "global-research-output-on-gender-equality-insights-from-bibliometric-analysis::2025",
+      "title": "Global Research Output on Gender Equality: Insights from Bibliometric Analysis",
+      "authors": [
+        "Rupesh Kumar",
+        "Rupesh Kumar"
+      ],
+      "year": "2025",
+      "venue": "6th National Conference on Management of Modern Libraries (NACML)",
+      "doi": null,
+      "url": "https://www.academia.edu/143704235/Global_Research_Output_on_Gender_Equality_Insights_from_Bibliometric_Analysis"
+    },
+    {
+      "key": "read-review-reference-how-to-write-smart::2025",
+      "title": "Read. Review. Reference: How to write smart",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "NITTE Education Trust",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "scholarly-communication-and-scientometrics-research-opportunities-for-lis-researchers::2025",
+      "title": "Scholarly Communication and Scientometrics: Research Opportunities for LIS Researchers",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "Kannur University",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "introduction-to-google-workspace-and-linkedin-for-students::2025",
+      "title": "Introduction to Google workspace and LinkedIn for Students",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "NITTE Education Trust",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "reference-management-in-scholarly-writing-using-zotero::2025",
+      "title": "Reference Management in Scholarly Writing using Zotero",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "Presidency College, Bengaluru",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "from-text-to-context-exploring-the-citation-dynamics-in-dae-funded-research::2025",
+      "title": "From Text to Context: Exploring the Citation Dynamics in DAE-funded research",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": "National Conference on \u201cReImaging of Libraries : Balancing Tradition and Innovation in a Digital Era",
+      "doi": null,
+      "url": "https://tmc.gov.in/assets/PDF/DigitalLibrary/Reil-2025%20Proceeding.pdf"
+    },
+    {
+      "key": "10.6025/jism/2024/14/4/165-170",
+      "title": "Uncovering the Trends in Indian Research: Latent Dirichlet Allocation (LDA) Analysis of UGC-funded Publications-",
+      "authors": [
+        "Devanath P R",
+        "Rupesh Kumar A"
+      ],
+      "year": "2024",
+      "venue": "Journal of Information & Systems Management",
+      "doi": "10.6025/jism/2024/14/4/165-170",
+      "url": "https://doi.org/10.6025/jism/2024/14/4/165-170"
+    },
+    {
+      "key": "10.62656/sijss.v22i3.871",
+      "title": "Mapping the Trajectory of Indian Social Science Research: A Decadal Bibliometric Analysis",
+      "authors": [
+        "Devanath P R",
+        "Rupesh Kumar A"
+      ],
+      "year": "2024",
+      "venue": "South India Journal of Social Sciences",
+      "doi": "10.62656/sijss.v22i3.871",
+      "url": "https://doi.org/10.62656/sijss.v22i3.871"
+    },
+    {
+      "key": "10.62656/sijss.v22i3.921",
+      "title": "Tracing The Scholarly Footprints of Digital Humanities: A Comparative Study on Citations and Altmetric Attention",
+      "authors": [
+        "Sandra M K",
+        "Rupesh Kumar A"
+      ],
+      "year": "2024",
+      "venue": "South India Journal of Social Sciences",
+      "doi": "10.62656/sijss.v22i3.921",
+      "url": "https://doi.org/10.62656/sijss.v22i3.921"
+    },
+    {
+      "key": "understanding-identifying-and-combating-predatory-publications::2024",
+      "title": "Understanding, Identifying, and Combating Predatory Publications",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2024",
+      "venue": "NITTE Education Trust",
+      "doi": null,
+      "url": null
+    },
+    {
+      "key": "assessing-the-online-influence-of-indian-funded-social-science-research-through-altmetrics::2024",
+      "title": "Assessing the Online Influence of Indian funded Social Science Research through Altmetrics",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2024",
+      "venue": "International Conference on Intelligent Libraries (LISACON)",
+      "doi": null,
+      "url": "https://www.researchgate.net/publication/385706732_Assessing_the_Online_Influence_of_Indian_funded_Social_Science_Research_through_Altmetrics"
+    },
+    {
+      "key": "webometric-analysis-of-national-library-websites-of-saarc-countries::2019",
+      "title": "Webometric Analysis of National Library Websites of SAARC Countries",
+      "authors": [
+        "Rupesh Kumar A."
+      ],
+      "year": "2019",
+      "venue": "Research Chronicler",
+      "doi": null,
+      "url": "https://portal.issn.org/resource/ISSN/2347-503X"
+    },
+    {
+      "key": "citation-based-transparent-ranking-of-indian-institutes-of-technology::2019",
+      "title": "Citation-based Transparent Ranking of Indian Institutes of Technology",
+      "authors": [
+        "Kumar, Rupesh"
+      ],
+      "year": "2019",
+      "venue": null,
+      "doi": null,
+      "url": "http://eprints.rclis.org/34465/"
+    },
+    {
+      "key": "10.13140/rg.2.1.2321.3844",
+      "title": "Installation of DSpace, Koha and other software using Liblivecd",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2016",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.2321.3844",
+      "url": "https://doi.org/10.13140/RG.2.1.2321.3844"
+    },
+    {
+      "key": "10.13140/rg.2.1.3822.1281",
+      "title": "Installation of Drupal CMS on Windows using Apache, MySQL and PHP",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2015",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.3822.1281",
+      "url": "https://doi.org/10.13140/RG.2.1.3822.1281"
+    },
+    {
+      "key": "10.13140/rg.2.1.2085.4242",
+      "title": "Installation of Joomla CMS on Windows using Apache, MySQL and PHP",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2015",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.2085.4242",
+      "url": "https://doi.org/10.13140/RG.2.1.2085.4242"
+    },
+    {
+      "key": "10.13140/rg.2.1.4084.2720",
+      "title": "Installation of Wordpress CMS on Windows using EasyPHP",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2015",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.4084.2720",
+      "url": "https://doi.org/10.13140/RG.2.1.4084.2720"
+    },
+    {
+      "key": "10.13140/rg.2.1.4990.1202",
+      "title": "Building Library Circulation in a Content Management System: An experience with Web Librarian",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2014",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.4990.1202",
+      "url": "https://doi.org/10.13140/RG.2.1.4990.1202"
+    },
+    {
+      "key": "10.13140/rg.2.1.1975.4641",
+      "title": "The Social Learning: Integrating social networking in teaching and learning",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2014",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.1975.4641",
+      "url": "https://doi.org/10.13140/RG.2.1.1975.4641"
+    },
+    {
+      "key": "10.13140/rg.2.1.2041.0000",
+      "title": "Wikis for Teachers of English Language",
+      "authors": [
+        "Rupesh Kumar",
+        "Monbinder Kaur"
+      ],
+      "year": "2012",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.2041.0000",
+      "url": "https://doi.org/10.13140/RG.2.1.2041.0000"
+    },
+    {
+      "key": "10.13140/rg.2.1.2978.9840",
+      "title": "Latex and Indian Languages",
+      "authors": [
+        "Rupesh Kumar"
+      ],
+      "year": "2010",
+      "venue": null,
+      "doi": "10.13140/RG.2.1.2978.9840",
+      "url": "https://doi.org/10.13140/RG.2.1.2978.9840"
+    },
+    {
+      "key": "e-learning-2-0::2009",
+      "title": "E-Learning 2.0",
+      "authors": [
+        "Rupesh Kumar A."
+      ],
+      "year": "2009",
+      "venue": "Library Philosophy and Practice",
+      "doi": null,
+      "url": "http://digitalcommons.unl.edu/libphilprac/284"
+    },
+    {
+      "key": "e-learning-2-0-learning-redefined::2009",
+      "title": "E-Learning 2.0: Learning redefined",
+      "authors": [
+        "Rupesh, K.A.",
+        "Rupesh Kumar A."
+      ],
+      "year": "2009",
+      "venue": "Library Philosophy and Practice",
+      "doi": null,
+      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-77954131977&partnerID=MN8TOARS"
+    }
+  ]
 }
