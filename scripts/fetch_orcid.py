@@ -6,9 +6,10 @@ write a merged, de-duplicated list to ../data/publications.json.
 No external dependencies - uses only the Python standard library so it
 runs on a plain GitHub Actions runner with no extra pip installs.
 
-This script only READS from ORCID. It never writes anything back to
-ORCID, and it never touches data/lab-tags.json (that file is edited by
-hand to decide which lab each paper belongs to).
+This script only READS from ORCID and from data/manual-publications.json
+(hand-added entries that ORCID doesn't have). It never writes back to
+either of those, and it never touches data/lab-tags.json (that file is
+edited by hand to decide which lab each paper belongs to).
 """
 
 import json
@@ -23,6 +24,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parent.parent
 TEAM_FILE = ROOT / "scripts" / "team-orcids.json"
 OUTPUT_FILE = ROOT / "data" / "publications.json"
+MANUAL_FILE = ROOT / "data" / "manual-publications.json"
 
 API_BASE = "https://pub.orcid.org/v3.0"
 HEADERS = {"Accept": "application/json"}
@@ -121,6 +123,26 @@ def slugify_key(title, year):
     return f"{base}::{year or 'n.d.'}"
 
 
+def load_manual_publications():
+    """Publications added by hand in data/manual-publications.json.
+
+    These are merged in on top of whatever ORCID returns, and always win
+    on a key collision (they were typed in on purpose). This file is
+    never written to by this script - only read.
+    """
+    if not MANUAL_FILE.exists():
+        return []
+    data = json.loads(MANUAL_FILE.read_text())
+    manual = []
+    for pub in data.get("publications", []):
+        if not isinstance(pub, dict) or not pub.get("key"):
+            continue
+        if pub["key"].startswith("_example"):
+            continue
+        manual.append(pub)
+    return manual
+
+
 def main():
     if not TEAM_FILE.exists():
         print(f"Missing {TEAM_FILE}", file=sys.stderr)
@@ -179,6 +201,12 @@ def main():
                     "doi": doi,
                     "url": url,
                 }
+
+    manual_pubs = load_manual_publications()
+    for pub in manual_pubs:
+        publications[pub["key"]] = pub
+    if manual_pubs:
+        print(f"- Merged {len(manual_pubs)} manually-added publication(s) from {MANUAL_FILE.name}")
 
     pub_list = list(publications.values())
     pub_list.sort(key=lambda p: (p.get("year") or "0"), reverse=True)
