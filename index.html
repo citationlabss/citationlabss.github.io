@@ -124,6 +124,29 @@ body{ padding-top:40px; } /* offset for fixed topbar */
   box-shadow:0 0 0 1px var(--gold), 0 8px 18px rgba(28,46,79,0.10);
 }
 
+section.detail.is-hidden{ display:none; }
+
+.pub-item.is-hidden{ display:none; }
+.pub-item.is-match{
+  border-left-color:var(--navy);
+  box-shadow:0 0 0 1px var(--gold);
+}
+
+.team-card.is-hidden{ display:none; }
+.team-card.is-match{
+  box-shadow:0 0 0 2px var(--gold), 0 14px 26px rgba(28,46,79,0.12);
+}
+
+.search-empty{
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--ink-soft);
+  font-style:italic;
+  padding:24px 0;
+  display:none;
+}
+.search-empty.is-visible{ display:block; }
+
 /* ---------- Header ---------- */
 header.masthead{
   border-bottom:1px solid var(--paper-line);
@@ -464,7 +487,7 @@ footer .wrap{
     <div class="topbar-search">
       <form id="site-search-form" role="search" autocomplete="off">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="search" id="site-search-input" placeholder="Search labs&hellip;" aria-label="Search publications, team member...">
+        <input type="search" id="site-search-input" placeholder="Search labs, team, publications&hellip;" aria-label="Search site content">
       </form>
     </div>
     <div class="topbar-links right">
@@ -481,6 +504,8 @@ footer .wrap{
 </header>
 
 <main>
+
+  <p class="search-empty" id="search-empty">No matches on the page for your search.</p>
 
   <section class="labs" id="labs">
     <h2>Labs</h2>
@@ -747,20 +772,66 @@ footer .wrap{
   function setupSiteSearch(){
     const input = document.getElementById('site-search-input');
     const form = document.getElementById('site-search-form');
+    const emptyMsg = document.getElementById('search-empty');
     if (!input || !form) return;
 
-    const cards = Array.from(document.querySelectorAll('.lab-card'));
-
+    // Re-queries the live DOM on every keystroke, so this also covers
+    // lab cards / publications that get added later (e.g. publication sync).
     function applyFilter(){
       const q = input.value.trim().toLowerCase();
       let firstMatch = null;
-      cards.forEach(card => {
+      let anyVisible = false;
+
+      // 1. Lab cards in the top grid
+      document.querySelectorAll('.lab-card').forEach(card => {
         const name = card.querySelector('.name').textContent.toLowerCase();
         const matches = !q || name.includes(q);
         card.classList.toggle('is-hidden', !matches);
         card.classList.toggle('is-match', !!q && matches);
-        if (matches && !firstMatch) firstMatch = card;
+        if (matches) {
+          anyVisible = true;
+          if (q && !firstMatch) firstMatch = card;
+        }
       });
+
+      // 2. Lab detail sections, including their (possibly dynamically
+      //    loaded) publication lists
+      document.querySelectorAll('section.detail').forEach(section => {
+        const title = section.querySelector('h3');
+        const desc = section.querySelector('p:not(.pub-heading)');
+        const titleMatches = !q || (title && title.textContent.toLowerCase().includes(q));
+        const descMatches = !q || (desc && desc.textContent.toLowerCase().includes(q));
+
+        let anyPubMatch = false;
+        section.querySelectorAll('.pub-item').forEach(item => {
+          const itemMatches = !q || item.textContent.toLowerCase().includes(q);
+          item.classList.toggle('is-hidden', !itemMatches);
+          item.classList.toggle('is-match', !!q && itemMatches && !titleMatches && !descMatches);
+          if (itemMatches) anyPubMatch = true;
+        });
+
+        const sectionMatches = !q || titleMatches || descMatches || anyPubMatch;
+        section.classList.toggle('is-hidden', !sectionMatches);
+        if (sectionMatches) {
+          anyVisible = true;
+          if (q && !firstMatch) firstMatch = section;
+        }
+      });
+
+      // 3. Team members
+      document.querySelectorAll('.team-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matches = !q || text.includes(q);
+        card.classList.toggle('is-hidden', !matches);
+        card.classList.toggle('is-match', !!q && matches);
+        if (matches) {
+          anyVisible = true;
+          if (q && !firstMatch) firstMatch = card;
+        }
+      });
+
+      if (emptyMsg) emptyMsg.classList.toggle('is-visible', !!q && !anyVisible);
+
       return firstMatch;
     }
 
@@ -769,11 +840,7 @@ footer .wrap{
     form.addEventListener('submit', function(e){
       e.preventDefault();
       const match = applyFilter();
-      if (match) {
-        const targetId = match.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (match) match.scrollIntoView({ behavior: 'smooth' });
     });
   }
 
