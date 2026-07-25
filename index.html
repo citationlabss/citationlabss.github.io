@@ -55,9 +55,10 @@ body{ padding-top:40px; } /* offset for fixed topbar */
   max-width:1080px;
   margin:0 auto;
   padding:0 32px;
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
+  gap:20px;
 }
 .topbar .wrap a{
   color:#EFF3F9;
@@ -66,6 +67,62 @@ body{ padding-top:40px; } /* offset for fixed topbar */
   transition:color .15s ease;
 }
 .topbar .wrap a:hover{ color:var(--gold); }
+.topbar-links{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.topbar-links.right{ justify-content:flex-end; }
+
+/* ---------- Topbar search ---------- */
+.topbar-search{
+  display:flex;
+  justify-content:center;
+}
+.topbar-search form{
+  position:relative;
+  display:flex;
+  align-items:center;
+  width:100%;
+  max-width:300px;
+}
+.topbar-search input[type="search"]{
+  width:100%;
+  background:rgba(239,243,249,0.08);
+  border:1px solid rgba(239,243,249,0.22);
+  border-radius:6px;
+  padding:6px 12px 6px 30px;
+  color:#EFF3F9;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.04em;
+  outline:none;
+  transition:background .15s ease, border-color .15s ease;
+}
+.topbar-search input[type="search"]::placeholder{
+  color:rgba(239,243,249,0.5);
+}
+.topbar-search input[type="search"]:focus{
+  background:rgba(239,243,249,0.14);
+  border-color:var(--gold);
+}
+.topbar-search svg{
+  position:absolute;
+  left:9px;
+  width:13px;
+  height:13px;
+  stroke:rgba(239,243,249,0.6);
+  pointer-events:none;
+}
+.topbar-search input[type="search"]:focus + svg,
+.topbar-search svg{ transition:stroke .15s ease; }
+.topbar-search form:focus-within svg{ stroke:var(--gold); }
+
+.lab-card.is-hidden{ display:none; }
+.lab-card.is-match{
+  border-left-color:var(--gold);
+  box-shadow:0 0 0 1px var(--gold), 0 8px 18px rgba(28,46,79,0.10);
+}
 
 /* ---------- Header ---------- */
 header.masthead{
@@ -401,8 +458,18 @@ footer .wrap{
 
 <div class="topbar">
   <div class="wrap">
-    <a href="#labs">CITATION LABS</a>
-    <a href="#team">TEAM</a>
+    <div class="topbar-links">
+      <a href="#labs">CITATION LABS</a>
+    </div>
+    <div class="topbar-search">
+      <form id="site-search-form" role="search" autocomplete="off">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="site-search-input" placeholder="Search labs&hellip;" aria-label="Search publications, team member...">
+      </form>
+    </div>
+    <div class="topbar-links right">
+      <a href="#team">TEAM</a>
+    </div>
   </div>
 </div>
 
@@ -676,6 +743,41 @@ footer .wrap{
   }
 
   loadPublications();
+
+  function setupSiteSearch(){
+    const input = document.getElementById('site-search-input');
+    const form = document.getElementById('site-search-form');
+    if (!input || !form) return;
+
+    const cards = Array.from(document.querySelectorAll('.lab-card'));
+
+    function applyFilter(){
+      const q = input.value.trim().toLowerCase();
+      let firstMatch = null;
+      cards.forEach(card => {
+        const name = card.querySelector('.name').textContent.toLowerCase();
+        const matches = !q || name.includes(q);
+        card.classList.toggle('is-hidden', !matches);
+        card.classList.toggle('is-match', !!q && matches);
+        if (matches && !firstMatch) firstMatch = card;
+      });
+      return firstMatch;
+    }
+
+    input.addEventListener('input', applyFilter);
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const match = applyFilter();
+      if (match) {
+        const targetId = match.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  setupSiteSearch();
 })();
 </script>
 
