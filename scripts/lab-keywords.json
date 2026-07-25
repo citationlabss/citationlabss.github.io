@@ -1,0 +1,23 @@
+{
+  "_readme": [
+    "Keyword rules used by scripts/auto_tag.py to SUGGEST lab tags for new",
+    "publications. Matching is a simple case-insensitive substring search",
+    "against each publication's title + venue.",
+    "",
+    "This is a blunt instrument on purpose - it's meant to catch the obvious",
+    "cases and leave the rest for a human. Add/remove terms as you notice",
+    "false positives or misses in data/suggested-tags.json.",
+    "",
+    "A publication can match more than one lab; all matches are suggested."
+  ],
+
+  "altmetrics": ["altmetric", "webometric", "online influence", "social media attention", "web attention"],
+  "context": ["citation context", "citation dynamics", "citing", "context analysis"],
+  "inequality": ["citation concentration", "citation inequality", "gini", "inequality"],
+  "trends": ["latent dirichlet", "lda analysis", "trend", "trajectory", "decadal"],
+  "content": ["content analysis", "text mining", "topic modeling"],
+  "conventional": ["bibliometric", "citation analysis", "nirf", "ranking", "scholarly literature", "open access"],
+  "interdisciplinarity": ["interdisciplinary", "interdisciplinarity", "cross-disciplinary", "multidisciplinary"],
+  "evaluation": ["research evaluation", "predatory", "quality assessment", "peer review"],
+  "retractions": ["retract", "retracted", "retraction"]
+}
