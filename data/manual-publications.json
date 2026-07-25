@@ -1,0 +1,34 @@
+{
+  "_readme": [
+    "Publications listed here are added to data/publications.json alongside",
+    "whatever fetch_orcid.py pulls from ORCID - they are NOT overwritten by",
+    "the weekly sync, unlike data/publications.json itself.",
+    "",
+    "Use this for anything ORCID doesn't have: talks, book chapters, items",
+    "from before someone's ORCID profile existed, or corrections to an",
+    "ORCID record you don't want to fix upstream.",
+    "",
+    "HOW TO USE:",
+    "1. Add an object to the \"publications\" array below.",
+    "2. \"key\" is required and must be unique - use the DOI (lowercase) if",
+    "   there is one, otherwise lowercase-hyphenated-title::year (see the",
+    "   existing entries in data/publications.json for the exact pattern).",
+    "3. If your key matches one ORCID already fetched, this entry WINS -",
+    "   useful for fixing a bad title/author list without editing ORCID.",
+    "4. Don't forget to also tag it in data/lab-tags.json once it's synced.",
+    "5. Commit the change - it takes effect on the next sync run (or you",
+    "   can trigger one manually from the Actions tab)."
+  ],
+
+  "publications": [
+    {
+      "key": "_example-remove-me::2020",
+      "title": "Example Talk Title Goes Here",
+      "authors": ["Full Name"],
+      "year": "2020",
+      "venue": "Some Conference or Workshop",
+      "doi": null,
+      "url": null
+    }
+  ]
+}
