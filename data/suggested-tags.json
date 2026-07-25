@@ -8,54 +8,8 @@
     "keep reappearing until the key is added to lab-tags.json."
   ],
   "suggestions": {
-    "beyond-the-book-expanding-the-role-of-academic-libraries-through-innovation-and-transformation::2026": [
-      "_readme"
-    ],
-    "read-review-reference-how-to-write-smart::2025": [
-      "_readme"
-    ],
-    "scholarly-communication-and-scientometrics-research-opportunities-for-lis-researchers::2025": [
-      "_readme"
-    ],
-    "introduction-to-google-workspace-and-linkedin-for-students::2025": [
-      "_readme"
-    ],
-    "reference-management-in-scholarly-writing-using-zotero::2025": [
-      "_readme"
-    ],
     "webometric-analysis-of-national-library-websites-of-saarc-countries::2019": [
-      "_readme",
       "altmetrics"
-    ],
-    "10.13140/rg.2.1.2321.3844": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.3822.1281": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.2085.4242": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.4084.2720": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.4990.1202": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.1975.4641": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.2041.0000": [
-      "_readme"
-    ],
-    "10.13140/rg.2.1.2978.9840": [
-      "_readme"
-    ],
-    "e-learning-2-0::2009": [
-      "_readme"
-    ],
-    "e-learning-2-0-learning-redefined::2009": [
-      "_readme"
     ]
   }
 }
