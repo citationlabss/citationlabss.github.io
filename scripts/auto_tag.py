@@ -42,7 +42,8 @@ def main():
     tags = load_json(TAGS_FILE, {})
     tagged_keys = {k for k in tags.keys() if not k.startswith("_")}
 
-    keywords = load_json(KEYWORDS_FILE, {})
+    raw_keywords = load_json(KEYWORDS_FILE, {})
+    keywords = {k: v for k, v in raw_keywords.items() if not k.startswith("_")}
     if not keywords:
         print("No keyword rules found in scripts/lab-keywords.json - nothing to do.", file=sys.stderr)
         sys.exit(0)
