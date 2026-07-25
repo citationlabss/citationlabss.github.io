@@ -1,0 +1,20 @@
+{
+  "_readme": [
+    "This file decides which lab section(s) each synced publication appears under.",
+    "ORCID/Google Scholar have no idea what 'Altmetrics' or 'Retractions' means as a topic -",
+    "that mapping only exists in your head, so it has to be entered here by hand.",
+    "",
+    "HOW TO USE:",
+    "1. Run the sync (Actions tab -> Sync Publications -> Run workflow).",
+    "2. Open data/publications.json and find the paper you want to tag - copy its \"key\" value.",
+    "3. Add an entry below: \"that-key\": [\"lab-id-1\", \"lab-id-2\"].",
+    "4. A paper can belong to more than one lab - just list multiple lab ids.",
+    "5. Commit the change. The website reads this file directly, no rebuild needed.",
+    "",
+    "Valid lab ids (must match the id= on each lab section in index.html):",
+    "altmetrics, context, inequality, trends, content, conventional,",
+    "interdisciplinarity, evaluation, retractions"
+  ],
+
+  "_example-remove-me": ["altmetrics", "trends"]
+}
