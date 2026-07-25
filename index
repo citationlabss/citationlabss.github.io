@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citation Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#1B2430;
+  --ink-soft:#4A5568;
+  --paper:#FBFAF7;
+  --paper-line:#E4E0D6;
+  --navy:#2C4470;
+  --navy-deep:#1C2E4F;
+  --tint:#EEF2F8;
+  --gold:#B08A3E;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;}
+
+/* ---------- Top bar ---------- */
+body{ padding-top:40px; } /* offset for fixed topbar */
+
+.topbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  background:var(--navy-deep);
+  color:#EFF3F9;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.06em;
+  padding:11px 0;
+  box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.topbar .wrap{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.topbar .wrap a{
+  color:#EFF3F9;
+  text-decoration:none;
+  letter-spacing:.06em;
+  transition:color .15s ease;
+}
+.topbar .wrap a:hover{ color:var(--gold); }
+
+/* ---------- Header ---------- */
+header.masthead{
+  border-bottom:1px solid var(--paper-line);
+  background:
+    linear-gradient(180deg, rgba(44,68,112,0.03), rgba(44,68,112,0)) ,
+    var(--paper);
+}
+.masthead-inner{
+  max-width:1080px;
+  margin:0 auto;
+  padding:40px 32px 32px;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 14px;
+}
+.eyebrow::before{ content:"["; color:var(--navy); }
+.eyebrow::after{ content:"]"; color:var(--navy); }
+
+h1.sitetitle{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(34px, 5vw, 52px);
+  margin:0 0 18px;
+  color:var(--navy-deep);
+  letter-spacing:-0.01em;
+}
+
+p.lede{
+  font-family:var(--serif);
+  font-size:19px;
+  color:var(--ink-soft);
+  max-width:660px;
+  margin:0;
+}
+
+/* ---------- Main sections ---------- */
+main{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+section.intro{ padding:52px 0 8px; }
+section.intro h2{
+  font-family:var(--serif);
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--navy);
+  margin:0 0 14px;
+  font-weight:600;
+}
+section.intro p{
+  max-width:700px;
+  color:var(--ink-soft);
+  font-size:15.5px;
+}
+
+/* ---------- Labs grid ---------- */
+section.labs{ padding:22px 0 10px; scroll-margin-top:60px; }
+section.labs > h2{
+  font-family:var(--serif);
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--navy);
+  margin:0 0 16px;
+  font-weight:600;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+}
+@media (max-width: 860px){
+  .grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .grid{ grid-template-columns:1fr; }
+}
+
+.lab-card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  text-decoration:none;
+  background:#fff;
+  color:var(--ink);
+  border:1px solid var(--paper-line);
+  border-left:3px solid var(--navy);
+  border-radius:6px;
+  padding:18px 20px;
+  transition:border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .18s ease;
+  box-shadow:0 1px 2px rgba(28,46,79,0.04);
+}
+.lab-card .name{
+  font-family:var(--serif);
+  font-size:15.5px;
+  font-weight:600;
+  line-height:1.35;
+  color:var(--navy-deep);
+}
+.lab-card .go{
+  flex-shrink:0;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  opacity:0;
+  transform:translateX(-4px);
+  transition:opacity .18s ease, transform .18s ease, color .18s ease;
+}
+.lab-card:hover{
+  transform:translateY(-2px);
+  border-left-color:var(--gold);
+  background:var(--tint);
+  box-shadow:0 8px 18px rgba(28,46,79,0.10);
+}
+.lab-card:hover .go{
+  opacity:1;
+  transform:translateX(0);
+  color:var(--navy);
+}
+.lab-card:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:2px;
+}
+
+/* ---------- Lab detail sections ---------- */
+section.detail{
+  padding:36px 0 28px;
+  border-top:1px solid var(--paper-line);
+  scroll-margin-top:60px;
+}
+section.detail .kicker{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.1em;
+  color:var(--gold);
+  margin:0 0 10px;
+}
+section.detail h3{
+  font-family:var(--serif);
+  font-size:28px;
+  font-weight:600;
+  color:var(--navy-deep);
+  margin:0 0 16px;
+}
+section.detail p{
+  max-width:680px;
+  color:var(--ink-soft);
+  font-size:15.5px;
+}
+section.detail .backlink{
+  display:inline-block;
+  margin-top:18px;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:500;
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:1px solid var(--paper-line);
+}
+section.detail .backlink:hover{ border-color:var(--navy); }
+
+.pub-heading{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:26px 0 12px;
+}
+.pub-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:680px;
+}
+.pub-item{
+  padding:14px 16px;
+  background:var(--tint);
+  border-left:3px solid var(--gold);
+  border-radius:4px;
+}
+.pub-title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:15px;
+  color:var(--navy-deep);
+  margin:0 0 4px;
+  line-height:1.4;
+}
+.pub-meta{
+  font-family:var(--sans);
+  font-size:12.5px;
+  color:var(--ink-soft);
+  margin:0 0 8px;
+}
+.pub-link{
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  color:var(--navy);
+  text-decoration:none;
+}
+.pub-link:hover{ color:var(--gold); }
+.pub-empty{
+  font-family:var(--sans);
+  font-size:13.5px;
+  color:var(--ink-soft);
+  font-style:italic;
+  margin:0;
+}
+
+/* ---------- Team section ---------- */
+section.team{
+  padding:36px 0 20px;
+  border-top:1px solid var(--paper-line);
+  scroll-margin-top:60px;
+}
+section.team > h2{
+  font-family:var(--serif);
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--navy);
+  margin:0 0 28px;
+  font-weight:600;
+}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+}
+@media (max-width: 860px){
+  .team-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .team-grid{ grid-template-columns:1fr; }
+}
+.team-card{
+  background:#ECEAE0;
+  border:none;
+  border-radius:10px;
+  padding:46px 26px 34px;
+  text-align:center;
+  transition:box-shadow .18s ease, transform .18s ease;
+}
+.team-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 26px rgba(28,46,79,0.12);
+}
+.avatar{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  display:block;
+  object-fit:cover;
+  object-position:center top;
+  margin:0 auto 24px;
+  border:5px solid #FBFAF7;
+  box-shadow:0 3px 12px rgba(28,46,79,0.14);
+  background:var(--tint);
+}
+.tname{
+  font-family:var(--serif);
+  font-size:23px;
+  font-weight:700;
+  color:#3E8479;
+  margin:0 0 12px;
+}
+.tdesignation{
+  font-family:var(--serif);
+  font-size:15.5px;
+  color:#2A2A28;
+  font-weight:600;
+  max-width:85%;
+  margin:0 auto 4px;
+  line-height:1.35;
+}
+.tinstitution{
+  font-family:var(--serif);
+  font-size:13.5px;
+  color:#6B6862;
+  margin:0 auto 26px;
+  max-width:85%;
+  line-height:1.35;
+}
+.orcid-btn{
+  display:inline-block;
+  background:#3E8479;
+  color:#fff;
+  text-decoration:none;
+  font-family:var(--sans);
+  font-size:13.5px;
+  font-weight:600;
+  letter-spacing:.02em;
+  padding:11px 30px;
+  border-radius:24px;
+  transition:background .15s ease;
+}
+.orcid-btn:hover{ background:#2E6960; }
+
+/* ---------- Footer ---------- */
+footer{
+  margin-top:20px;
+  border-top:1px solid var(--paper-line);
+  background:var(--tint);
+}
+footer .wrap{
+  max-width:1080px;
+  margin:0 auto;
+  padding:30px 32px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  font-family:var(--sans);
+  font-size:13px;
+  color:var(--ink-soft);
+}
+</style>
+</head>
+<body id="top">
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="#labs">CITATION LABS</a>
+    <a href="#team">TEAM</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 class="sitetitle">Welcome to Citation Labs.</h1>
+    <p class="lede">We are a team of researchers with a special interest in citation-related studies. We explore and investigate various characteristics of citations and other aspects of scholarly literature.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="labs" id="labs">
+    <h2>Labs</h2>
+    <div class="grid">
+      <a class="lab-card" href="#altmetrics">
+        <span class="name">Altmetrics</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#context">
+        <span class="name">Citation Context Analysis</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#inequality">
+        <span class="name">Citation Inequality / Concentration / Skewness</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#trends">
+        <span class="name">Citation Trends</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#content">
+        <span class="name">Content Analysis</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#conventional">
+        <span class="name">Conventional Citation Impact Metrics</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#interdisciplinarity">
+        <span class="name">Interdisciplinarity</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#evaluation">
+        <span class="name">Research Evaluation</span>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="lab-card" href="#retractions">
+        <span class="name">Retractions</span>
+        <span class="go">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="detail" id="altmetrics">
+    <p class="kicker">Lab</p>
+    <h3>Altmetrics</h3>
+    <p>Beyond citations, we investigate alternative signals of research attention and engagement — social media mentions, news coverage, policy citations, and online discussion — and how these relate to traditional impact measures.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="altmetrics"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="context">
+    <p class="kicker">Lab</p>
+    <h3>Citation Context Analysis</h3>
+    <p>We examine the textual context surrounding citations to understand why authors cite the work they do — distinguishing supportive, contrasting, and background references, and what this reveals about scholarly influence.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="context"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="inequality">
+    <p class="kicker">Lab</p>
+    <h3>Citation Inequality / Concentration / Skewness</h3>
+    <p>Citations are distributed unevenly across papers, authors, and institutions. We study the shape of this inequality — concentration among a small share of highly cited work — and its implications for how science is evaluated.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="inequality"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="trends">
+    <p class="kicker">Lab</p>
+    <h3>Citation Trends</h3>
+    <p>We track how citation patterns evolve over time — across fields, document types, and publication venues — to understand shifting norms of scholarly communication and recognition.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="trends"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="content">
+    <p class="kicker">Lab</p>
+    <h3>Content Analysis</h3>
+    <p>We study the substance of scholarly texts themselves — structure, language, and argumentation — to understand how the content of a paper relates to how, and how often, it is cited.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="content"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="conventional">
+    <p class="kicker">Lab</p>
+    <h3>Conventional Citation Impact Metrics</h3>
+    <p>We study established measures of scholarly influence — citation counts, the h-index, journal impact factor, and related indicators — examining their strengths, limitations, and appropriate use in research evaluation.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="conventional"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="interdisciplinarity">
+    <p class="kicker">Lab</p>
+    <h3>Interdisciplinarity</h3>
+    <p>We measure how research draws on and contributes across disciplinary boundaries, developing methods to quantify interdisciplinarity from citation networks and knowledge flows between fields.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="interdisciplinarity"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="evaluation">
+    <p class="kicker">Lab</p>
+    <h3>Research Evaluation</h3>
+    <p>We study how individuals, departments, and institutions are assessed using citation-based and complementary evidence, and work toward more fair and context-aware evaluation practices.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="evaluation"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="detail" id="retractions">
+    <p class="kicker">Lab</p>
+    <h3>Retractions</h3>
+    <p>We study the citation behavior of retracted publications — how often they continue to be cited after retraction, why, and what this means for the integrity of the scholarly record.</p>
+    <p class="pub-heading">Publications</p>
+    <div class="pub-list" data-lab="retractions"><p class="pub-empty">Loading publications&hellip;</p></div>
+    <a class="backlink" href="#top">&uarr; Back to labs</a>
+  </section>
+
+  <section class="team" id="team">
+    <h2>Team</h2>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/rupesh-kumar-a.jpg" alt="Rupesh Kumar A.">
+        <p class="tname">Rupesh Kumar A.</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/devanath-p-r.jpg" alt="Devanath P R">
+        <p class="tname">Devanath P R</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/sandra-m-k.jpg" alt="Sandra M K">
+        <p class="tname">Sandra M K</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/simya-k.jpg" alt="Simya K">
+        <p class="tname">Simya K</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/vinutha-d.jpg" alt="Vinutha D">
+        <p class="tname">Vinutha D</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+      <div class="team-card">
+        <img class="avatar" src="images/team/soujanya.jpg" alt="Soujanya">
+        <p class="tname">Soujanya</p>
+        <p class="tdesignation">Designation</p>
+        <p class="tinstitution">Institution</p>
+        <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Citation Labs. All rights reserved.</span>
+    <span>Built for scholarly research on citations.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function esc(str){
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  async function loadPublications(){
+    const containers = document.querySelectorAll('.pub-list');
+    if (!containers.length) return;
+
+    let pubData, tagData;
+    try{
+      const [pubRes, tagRes] = await Promise.all([
+        fetch('data/publications.json'),
+        fetch('data/lab-tags.json')
+      ]);
+      pubData = await pubRes.json();
+      tagData = await tagRes.json();
+    }catch(err){
+      console.warn('Could not load publications data:', err);
+      containers.forEach(c => {
+        c.innerHTML = '<p class="pub-empty">Publications could not be loaded.</p>';
+      });
+      return;
+    }
+
+    const pubsByKey = {};
+    (pubData.publications || []).forEach(p => { pubsByKey[p.key] = p; });
+
+    const labToPubs = {};
+    Object.entries(tagData).forEach(([key, labs]) => {
+      if (key.startsWith('_') || !Array.isArray(labs)) return;
+      const pub = pubsByKey[key];
+      if (!pub) return;
+      labs.forEach(labId => {
+        (labToPubs[labId] = labToPubs[labId] || []).push(pub);
+      });
+    });
+
+    containers.forEach(container => {
+      const labId = container.dataset.lab;
+      const pubs = labToPubs[labId] || [];
+      if (!pubs.length){
+        container.innerHTML = '<p class="pub-empty">No publications tagged for this lab yet.</p>';
+        return;
+      }
+      container.innerHTML = pubs.map(p => {
+        const authors = (p.authors || []).join(', ');
+        const meta = [authors, p.venue, p.year].filter(Boolean).map(esc).join(' &middot; ');
+        const link = p.url
+          ? `<a class="pub-link" href="${esc(p.url)}" target="_blank" rel="noopener">View &rarr;</a>`
+          : '';
+        return `<div class="pub-item">
+          <p class="pub-title">${esc(p.title)}</p>
+          <p class="pub-meta">${meta}</p>
+          ${link}
+        </div>`;
+      }).join('');
+    });
+  }
+
+  loadPublications();
+})();
+</script>
+
+</body>
+</html>
