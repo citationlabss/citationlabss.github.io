@@ -18,7 +18,8 @@
   "citation-dynamics-and-altmetric-trends-of-retracted-publications-in-indian-funded-research-pre-and-post-retraction-analysis::2026": [
     "retractions",
     "altmetrics",
-    "trends"
+    "trends",
+    "evaluation"
   ],
   "citation-inequality-among-top-nirf-ranked-universities::2025": [
     "inequality"
@@ -31,18 +32,21 @@
   ],
   "csir-funded-research-in-india-insights-from-bibliometric-and-altmetric-analysis::2025": [
     "conventional",
-    "altmetrics"
+    "altmetrics",
+    "evaluation"
   ],
   "global-research-output-on-gender-equality-insights-from-bibliometric-analysis::2025": [
     "conventional"
   ],
   "uncovering-the-trends-in-indian-research-latent-dirichlet-allocation-lda-analysis-of-ugc-funded-publications::2024": [
     "trends",
-    "content"
+    "content",
+    "evaluation"
   ],
   "mapping-the-trajectory-of-indian-social-science-research-a-decadal-bibliometric-analysis::2024": [
     "trends",
-    "conventional"
+    "conventional",
+    "evaluation"
   ],
   "tracing-the-scholarly-footprints-of-digital-humanities-a-comparative-study-on-citations-and-altmetric-attention::2024": [
     "altmetrics",
@@ -54,6 +58,7 @@
   ],
   "from-text-to-context-exploring-the-citation-dynamics-in-dae-funded-research::2025": [
     "context",
-    "trends"
+    "trends",
+    "evaluation"
   ]
 }
