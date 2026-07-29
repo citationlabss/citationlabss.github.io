@@ -7,9 +7,5 @@
     "need to clean it up - just leave actioned entries alone, they'll",
     "keep reappearing until the key is added to lab-tags.json."
   ],
-  "suggestions": {
-    "understanding-identifying-and-combating-predatory-publications::2024": [
-      "evaluation"
-    ]
-  }
+  "suggestions": {}
 }
