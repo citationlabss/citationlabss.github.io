@@ -1,15 +1,24 @@
 #!/usr/bin/env python3
 """
-Fetch publications for each team member from the public ORCID API and
-write a merged, de-duplicated list to ../data/publications.json.
+Fetch publications from ONE ORCID profile (see scripts/orcid.json) and
+merge them into data/publications.json.
 
-No external dependencies - uses only the Python standard library so it
-runs on a plain GitHub Actions runner with no extra pip installs.
+This is the ONLY script in the sync system. No external dependencies -
+pure standard library, so it runs on a plain GitHub Actions runner with
+nothing extra to install.
 
-This script only READS from ORCID and from data/manual-publications.json
-(hand-added entries that ORCID doesn't have). It never writes back to
-either of those, and it never touches data/lab-tags.json (that file is
-edited by hand to decide which lab each paper belongs to).
+MERGE BEHAVIOUR (this is the whole trick that keeps things simple):
+- Every publication ORCID returns is added or refreshed in
+  data/publications.json, keyed by its "key" (DOI if it has one,
+  otherwise a title+year slug).
+- Any entry ALREADY in data/publications.json whose key ORCID did NOT
+  return this run is left completely untouched.
+
+That means: publications you type into data/publications.json by hand
+survive every sync run forever, automatically, with no separate manual
+file and no extra step to remember. Just add an entry with a unique
+"key" and it stays - the script will never delete it, only ever add or
+refresh entries that come from ORCID.
 """
 
 import json
@@ -22,14 +31,12 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parent.parent
-TEAM_FILE = ROOT / "scripts" / "team-orcids.json"
+ORCID_FILE = ROOT / "scripts" / "orcid.json"
 OUTPUT_FILE = ROOT / "data" / "publications.json"
-MANUAL_FILE = ROOT / "data" / "manual-publications.json"
 
 API_BASE = "https://pub.orcid.org/v3.0"
 HEADERS = {"Accept": "application/json"}
 
-PLACEHOLDER_ORCID = re.compile(r"^0000-0000-0000-0000$")
 ORCID_ID_RE = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$")
 
 
@@ -50,7 +57,6 @@ def fetch_json(url, retries=3):
 
 
 def get_works_summaries(orcid_id):
-    """Return list of (put_code, work_summary_dict) for an ORCID iD."""
     data = fetch_json(f"{API_BASE}/{orcid_id}/works")
     if not data:
         return []
@@ -59,7 +65,7 @@ def get_works_summaries(orcid_id):
         summaries = group.get("work-summary", [])
         if not summaries:
             continue
-        s = summaries[0]  # first source is fine; group = same work from multiple sources
+        s = summaries[0]
         put_code = s.get("put-code")
         if put_code is not None:
             out.append((put_code, s))
@@ -67,7 +73,6 @@ def get_works_summaries(orcid_id):
 
 
 def get_full_records(orcid_id, put_codes, chunk_size=40):
-    """Bulk-fetch full work records (for author/contributor lists)."""
     records = []
     for i in range(0, len(put_codes), chunk_size):
         chunk = put_codes[i:i + chunk_size]
@@ -89,8 +94,7 @@ def extract_doi(external_ids):
         if (eid.get("external-id-type") or "").lower() == "doi":
             value = eid.get("external-id-value")
             url_block = eid.get("external-id-url") or {}
-            url = url_block.get("value")
-            return value, url
+            return value, url_block.get("value")
     return None, None
 
 
@@ -123,92 +127,63 @@ def slugify_key(title, year):
     return f"{base}::{year or 'n.d.'}"
 
 
-def load_manual_publications():
-    """Publications added by hand in data/manual-publications.json.
-
-    These are merged in on top of whatever ORCID returns, and always win
-    on a key collision (they were typed in on purpose). This file is
-    never written to by this script - only read.
-    """
-    if not MANUAL_FILE.exists():
-        return []
-    data = json.loads(MANUAL_FILE.read_text())
-    manual = []
-    for pub in data.get("publications", []):
-        if not isinstance(pub, dict) or not pub.get("key"):
-            continue
-        if pub["key"].startswith("_example"):
-            continue
-        manual.append(pub)
-    return manual
+def load_existing():
+    if not OUTPUT_FILE.exists():
+        return {}
+    data = json.loads(OUTPUT_FILE.read_text())
+    return {p["key"]: p for p in data.get("publications", []) if p.get("key")}
 
 
 def main():
-    if not TEAM_FILE.exists():
-        print(f"Missing {TEAM_FILE}", file=sys.stderr)
+    if not ORCID_FILE.exists():
+        print(f"Missing {ORCID_FILE}", file=sys.stderr)
         sys.exit(1)
 
-    team = json.loads(TEAM_FILE.read_text())
-    team = {k: v for k, v in team.items() if not k.startswith("_")}
+    config = json.loads(ORCID_FILE.read_text())
+    orcid_id = config.get("orcid", "")
 
-    publications = {}  # key -> record
+    if not ORCID_ID_RE.match(orcid_id or ""):
+        print(f"'{orcid_id}' in {ORCID_FILE} doesn't look like a valid ORCID iD - stopping.", file=sys.stderr)
+        sys.exit(1)
 
-    for name, orcid_id in team.items():
-        if not orcid_id or PLACEHOLDER_ORCID.match(orcid_id or ""):
-            print(f"- Skipping {name}: no real ORCID iD set yet")
-            continue
-        if not ORCID_ID_RE.match(orcid_id):
-            print(f"- Skipping {name}: '{orcid_id}' doesn't look like a valid ORCID iD")
-            continue
+    existing = load_existing()
+    print(f"- {len(existing)} publication(s) already in {OUTPUT_FILE.name} (manual entries kept as-is)")
 
-        print(f"- Fetching works for {name} ({orcid_id})")
-        summaries = get_works_summaries(orcid_id)
-        if not summaries:
-            print(f"  (no works found or profile is private)")
-            continue
+    print(f"- Fetching works for ORCID {orcid_id}")
+    summaries = get_works_summaries(orcid_id)
+    if not summaries:
+        print("  (no works found, or the profile's works are private)")
 
-        put_codes = [pc for pc, _ in summaries]
-        full_records = get_full_records(orcid_id, put_codes)
-        full_by_putcode = {r.get("put-code"): r for r in full_records if r.get("put-code") is not None}
+    put_codes = [pc for pc, _ in summaries]
+    full_records = get_full_records(orcid_id, put_codes)
+    full_by_putcode = {r.get("put-code"): r for r in full_records if r.get("put-code") is not None}
 
-        for put_code, summary in summaries:
-            title = ((summary.get("title") or {}).get("title") or {}).get("value")
-            journal = (summary.get("journal-title") or {}).get("value")
-            year = ((summary.get("publication-date") or {}).get("year") or {}).get("value")
-            external_ids = summary.get("external-ids")
-            doi, _ = extract_doi(external_ids)
-            url = extract_any_url(external_ids, summary.get("url"))
+    fetched_count = 0
+    for put_code, summary in summaries:
+        title = ((summary.get("title") or {}).get("title") or {}).get("value")
+        journal = (summary.get("journal-title") or {}).get("value")
+        year = ((summary.get("publication-date") or {}).get("year") or {}).get("value")
+        external_ids = summary.get("external-ids")
+        doi, _ = extract_doi(external_ids)
+        url = extract_any_url(external_ids, summary.get("url"))
 
-            full = full_by_putcode.get(put_code)
-            authors = extract_authors(full) if full else []
-            if name not in authors:
-                authors = authors or [name]
+        full = full_by_putcode.get(put_code)
+        authors = extract_authors(full) if full else []
 
-            key = doi.lower() if doi else slugify_key(title, year)
+        key = doi.lower() if doi else slugify_key(title, year)
 
-            if key in publications:
-                # merge: add this member as a contributing author source if missing
-                existing = publications[key]
-                if name not in existing["authors"]:
-                    existing["authors"].append(name)
-            else:
-                publications[key] = {
-                    "key": key,
-                    "title": title or "Untitled",
-                    "authors": authors,
-                    "year": year,
-                    "venue": journal,
-                    "doi": doi,
-                    "url": url,
-                }
+        existing[key] = {
+            "key": key,
+            "title": title or "Untitled",
+            "authors": authors,
+            "year": year,
+            "venue": journal,
+            "doi": doi,
+            "url": url,
+        }
+        fetched_count += 1
 
-    manual_pubs = load_manual_publications()
-    for pub in manual_pubs:
-        publications[pub["key"]] = pub
-    if manual_pubs:
-        print(f"- Merged {len(manual_pubs)} manually-added publication(s) from {MANUAL_FILE.name}")
-
-    pub_list = list(publications.values())
+    pub_list = list(existing.values())
     pub_list.sort(key=lambda p: (p.get("year") or "0"), reverse=True)
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -217,7 +192,8 @@ def main():
         "publications": pub_list,
     }, indent=2))
 
-    print(f"\nWrote {len(pub_list)} publications to {OUTPUT_FILE}")
+    print(f"- Refreshed {fetched_count} entr{'y' if fetched_count == 1 else 'ies'} from ORCID")
+    print(f"- Wrote {len(pub_list)} publication(s) total to {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
