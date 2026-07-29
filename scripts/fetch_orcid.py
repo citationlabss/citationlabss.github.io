@@ -8,17 +8,22 @@ pure standard library, so it runs on a plain GitHub Actions runner with
 nothing extra to install.
 
 MERGE BEHAVIOUR (this is the whole trick that keeps things simple):
-- Every publication ORCID returns is added or refreshed in
-  data/publications.json, keyed by its "key" (DOI if it has one,
-  otherwise a title+year slug).
-- Any entry ALREADY in data/publications.json whose key ORCID did NOT
-  return this run is left completely untouched.
+- A publication ORCID returns is added to data/publications.json ONLY
+  if its key isn't already there.
+- Anything already in data/publications.json - whether it came from a
+  past sync or you typed it in by hand - is NEVER touched again. Not
+  updated, not refreshed, not overwritten. Ever.
 
-That means: publications you type into data/publications.json by hand
-survive every sync run forever, automatically, with no separate manual
-file and no extra step to remember. Just add an entry with a unique
-"key" and it stays - the script will never delete it, only ever add or
-refresh entries that come from ORCID.
+That means: any edit you make directly in data/publications.json is
+permanent. Fix a typo, correct an author list, add a missing DOI -
+it stays exactly as you left it through every future sync, forever.
+The only thing syncing ever does is ADD brand new publications that
+aren't in the file yet.
+
+If ORCID's own record for a paper changes later (e.g. a correction
+upstream) and you want that reflected here too, you'd need to delete
+that entry from data/publications.json yourself first, then re-run the
+sync so it gets re-added fresh.
 """
 
 import json
@@ -147,7 +152,7 @@ def main():
         sys.exit(1)
 
     existing = load_existing()
-    print(f"- {len(existing)} publication(s) already in {OUTPUT_FILE.name} (manual entries kept as-is)")
+    print(f"- {len(existing)} publication(s) already in {OUTPUT_FILE.name} (kept exactly as-is)")
 
     print(f"- Fetching works for ORCID {orcid_id}")
     summaries = get_works_summaries(orcid_id)
@@ -159,6 +164,7 @@ def main():
     full_by_putcode = {r.get("put-code"): r for r in full_records if r.get("put-code") is not None}
 
     fetched_count = 0
+    skipped_existing = 0
     for put_code, summary in summaries:
         title = ((summary.get("title") or {}).get("title") or {}).get("value")
         journal = (summary.get("journal-title") or {}).get("value")
@@ -171,6 +177,12 @@ def main():
         authors = extract_authors(full) if full else []
 
         key = doi.lower() if doi else slugify_key(title, year)
+
+        if key in existing:
+            # Already here - from a past sync or a hand edit. Never
+            # touch it again, that's the whole point.
+            skipped_existing += 1
+            continue
 
         existing[key] = {
             "key": key,
@@ -192,7 +204,8 @@ def main():
         "publications": pub_list,
     }, indent=2))
 
-    print(f"- Refreshed {fetched_count} entr{'y' if fetched_count == 1 else 'ies'} from ORCID")
+    print(f"- Added {fetched_count} new entr{'y' if fetched_count == 1 else 'ies'} from ORCID")
+    print(f"- Left {skipped_existing} already-existing entr{'y' if skipped_existing == 1 else 'ies'} untouched")
     print(f"- Wrote {len(pub_list)} publication(s) total to {OUTPUT_FILE}")
 
 
