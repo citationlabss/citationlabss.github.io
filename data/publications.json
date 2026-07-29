@@ -38,18 +38,6 @@
       "url": "https://doi.org/10.1007/s11192-025-05527-4"
     },
     {
-      "key": "from-mention-to-merit::2026",
-      "title": "From Mention to Merit",
-      "authors": [
-        "Sandra M K",
-        "Rupesh Kumar A"
-      ],
-      "year": "2026",
-      "venue": "DESIDOC Journal of Library & Information Technology",
-      "doi": "10.14429/djlit.21275",
-      "url": "https://doi.org/10.14429/djlit.21275"
-    },
-    {
       "key": "citation-inequality-among-top-nirf-ranked-universities::2025",
       "title": "Citation Inequality Among Top NIRF-Ranked Universities",
       "authors": [
@@ -114,7 +102,8 @@
       "key": "from-text-to-context-exploring-the-citation-dynamics-in-dae-funded-research::2025",
       "title": "From Text to Context: Exploring the Citation Dynamics in DAE-funded research",
       "authors": [
-        "Devanath P R"
+        "Devanath P R",
+        "Rupesh Kumar A"
       ],
       "year": "2025",
       "venue": null,
