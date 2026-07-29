@@ -1,70 +1,115 @@
-# Publications Sync — Setup Guide
+# Publications System — How It Works
 
-This adds a "Publications" list to each lab section on the homepage,
-kept up to date from ORCID.
+This site pulls in publications automatically from ORCID, and also lets
+you add or edit entries by hand. This document explains the whole
+process from scratch.
 
-## One-time setup
+## The files involved
 
-1. **Add real ORCID iDs.**
-   Open `scripts/team-orcids.json` and replace each `0000-0000-0000-0000`
-   placeholder with that person's real ORCID iD (format `XXXX-XXXX-XXXX-XXXX`).
-   If someone doesn't have one yet, they can create a free one at
-   https://orcid.org — leave the field as-is until they do (it will be
-   skipped safely otherwise).
+```
+scripts/
+  ├── orcid.json          <- the ORCID iD publications are fetched from
+  └── fetch_orcid.py       <- the script that does the fetching
+data/
+  ├── publications.json    <- every publication that appears on the site
+  └── lab-tags.json        <- which lab section(s) each publication belongs to
+.github/workflows/
+  └── sync-publications.yml <- runs the fetch script, on demand or on a schedule
+```
 
-2. **Push this whole folder to your GitHub repo**, including the hidden
-   `.github/` folder (some file browsers hide dot-folders — make sure
-   your Git client or upload includes it).
+`data/publications.json` is the single source of truth for what shows
+up on the site. `index.html` reads it directly. Nothing else needs to
+be touched for a publication to appear — once it's in that file and
+tagged in `lab-tags.json`, it's live.
 
-3. **Enable Actions** if you haven't already: repo → **Settings** →
-   **Actions** → **General** → allow workflows to run.
+## How a publication gets into the system
+
+There are two ways:
+
+**1. Automatically, from ORCID.**
+`scripts/orcid.json` holds one ORCID iD. Whenever the sync runs, it
+looks up that profile's works and adds any it hasn't seen before to
+`data/publications.json`.
+
+**2. By hand.**
+Open `data/publications.json` and add an entry directly — useful for
+talks, book chapters, older work not on ORCID, or anything you'd
+rather not wait on a sync for.
+
+Either way, once it's in the file, it works exactly the same going
+forward — the site doesn't distinguish between the two.
 
 ## Running a sync
 
-1. Go to your repo on GitHub → the **Actions** tab.
+1. Go to the repo on GitHub → **Actions** tab.
 2. Click **Sync Publications** in the left sidebar.
-3. Click the **Run workflow** button (top right) → **Run workflow**.
-4. Wait ~30 seconds, refresh — it will commit an updated
-   `data/publications.json` if it found anything new.
+3. Click **Run workflow** → confirm.
+4. Wait about 15–30 seconds, then refresh. If ORCID had anything new,
+   you'll see a fresh commit updating `data/publications.json`.
 
-It also runs automatically every Monday, so it won't go stale even if
-nobody clicks anything.
+It also runs automatically every Monday, so new papers show up even if
+nobody remembers to click anything.
+
+## Editing a publication's details
+
+Open `data/publications.json`, find the entry, and change whatever
+field needs fixing — title, authors, year, venue, DOI, or URL.
+
+Once an entry exists in this file, the sync will never touch it again.
+It only ever adds publications it hasn't seen before; it never
+rewrites, refreshes, or reverts anything already there. So an edit you
+make — whether to a hand-added entry or one that originally came from
+ORCID — is permanent and safe through every future sync.
+
+(If you ever do want a specific entry to be re-fetched fresh from
+ORCID — say, its record there was corrected — delete that entry from
+`data/publications.json` and run the sync again. It'll come back in as
+new.)
+
+## Adding a publication by hand — the format
+
+Add an object to the `"publications"` array in `data/publications.json`:
+
+```json
+{
+  "key": "10.xxxx/your-doi-here",
+  "title": "The paper's title",
+  "authors": ["Author One", "Author Two"],
+  "year": "2026",
+  "venue": "Journal or Conference Name",
+  "doi": "10.xxxx/your-doi-here",
+  "url": "https://doi.org/10.xxxx/your-doi-here"
+}
+```
+
+- `"key"` must be **unique** across the whole file. Use the DOI,
+  lowercased, if the publication has one. If it doesn't, use
+  `lowercase-title-with-hyphens::year` instead — look at any existing
+  entry with `"doi": null` to see the exact pattern.
+- Any field can be `null` if you don't have that information (e.g. a
+  talk with no DOI).
 
 ## Tagging a publication to a lab
 
-ORCID has no concept of your labs (Altmetrics, Retractions, etc.) — that
-mapping only exists in your head, so after a sync you tag papers by hand:
+A publication won't appear anywhere on the site until it's tagged to
+at least one lab.
 
-1. Open `data/publications.json`, find the paper, copy its `"key"` value
-   (this is the DOI, lowercased, or a title-based slug if it has no DOI).
+1. Copy the publication's `"key"` from `data/publications.json`.
 2. Open `data/lab-tags.json` and add a line:
    ```json
-   "10.1000/some-doi": ["altmetrics", "trends"]
+   "that-key": ["lab-id"]
    ```
-   A paper can belong to more than one lab — just list all that apply.
-3. Commit the change. The website reads this file directly on page
-   load — no rebuild or redeploy step needed.
+3. A publication can belong to more than one lab — just list all that
+   apply: `["altmetrics", "trends"]`.
+4. Commit the change. The site reads this file directly, so it takes
+   effect on next page load — no sync or rebuild needed.
 
-Valid lab ids (must match the section `id=` in `index.html`):
-`altmetrics`, `context`, `inequality`, `trends`, `content`,
-`conventional`, `interdisciplinarity`, `evaluation`, `retractions`
+Valid lab ids: `altmetrics`, `context`, `inequality`, `trends`,
+`content`, `conventional`, `interdisciplinarity`, `evaluation`,
+`retractions`
 
-## A note on Google Scholar
+## Changing which ORCID profile it syncs from
 
-Scholar has no official public API. Any "sync" from it would mean
-scraping the page, which Google actively blocks and which can break
-without warning — so it's intentionally not included here. ORCID is
-the reliable, official source this is built around. If you want Scholar
-data too, the practical options are: (a) manually copy entries into
-`data/publications.json` yourself in the same format, or (b) use a paid
-scraping API like SerpApi — happy to wire that in later if you decide
-you need it.
-
-## Testing locally
-
-Browsers block `fetch()` of local JSON files when you just double-click
-`index.html` (the `file://` protocol). To preview the publications
-working, either:
-- push to GitHub and view the live Pages URL, or
-- run a quick local server: `python3 -m http.server` in this folder,
-  then open `http://localhost:8000`.
+Open `scripts/orcid.json` and replace the `"orcid"` value with a
+different ORCID iD, then commit. The next sync will start pulling from
+that profile instead.
