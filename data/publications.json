@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T03:12:33.984753+00:00",
+  "generated_at": "2026-07-29T02:49:28.755860+00:00",
   "publications": [
     {
       "key": "10.14429/djlit.21275",
@@ -150,11 +150,13 @@
     {
       "key": "webometric-analysis-of-national-library-websites-of-saarc-countries::2019",
       "title": "Webometric Analysis of National Library Websites of SAARC Countries",
-      "authors": [],
+      "authors": [
+        "Rupesh Kumar A."
+      ],
       "year": "2019",
       "venue": "Research Chronicler",
       "doi": null,
-      "url": "https://portal.issn.org/resource/ISSN/2347-503X"
+      "url": "https://www.researchgate.net/publication/340127859_Webometric_Analysis_of_National_Library_Websites_of_SAARC_Countries"
     },
     {
       "key": "citation-based-transparent-ranking-of-indian-institutes-of-technology::2019",
@@ -259,7 +261,9 @@
     {
       "key": "e-learning-2-0::2009",
       "title": "E-Learning 2.0",
-      "authors": [],
+      "authors": [
+        "Rupesh Kumar A."
+      ],
       "year": "2009",
       "venue": "Library Philosophy and Practice",
       "doi": null,
@@ -267,14 +271,15 @@
     },
     {
       "key": "e-learning-2-0-learning-redefined::2009",
-      "title": "E-learning 2.0: Learning redefined",
+      "title": "E-Learning 2.0: Learning redefined",
       "authors": [
-        "Rupesh Kumar, A."
+        "Rupesh, K.A.",
+        "Rupesh Kumar A."
       ],
       "year": "2009",
       "venue": "Library Philosophy and Practice",
       "doi": null,
-      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-84904886909&partnerID=MN8TOARS"
+      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-77954131977&partnerID=MN8TOARS"
     }
   ]
 }
