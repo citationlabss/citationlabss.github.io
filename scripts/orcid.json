@@ -1,0 +1,5 @@
+{
+  "_readme": "The one ORCID iD publications are fetched from. Format: XXXX-XXXX-XXXX-XXXX. Change this any time to point the sync at a different profile.",
+
+  "orcid": "0000-0001-8787-6416"
+}

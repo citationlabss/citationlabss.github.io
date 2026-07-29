@@ -1,6 +1,0 @@
-{
-  "_readme": "Replace each ORCID iD below with the real one for that person. Format: XXXX-XXXX-XXXX-XXXX. Find it on orcid.org after they've created/claimed a profile. Leave a person out (or set their value to null) to skip them in the sync.",
-
-  "Rupesh Kumar A.": "0000-0001-8787-6416",
-  "Devanath P R": "0000-0000-0000-0000"
-}
