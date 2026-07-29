@@ -3,7 +3,7 @@
   "publications": [
     {
       "key": "10.14429/djlit.21275",
-      "title": "From Mention to Merit",
+      "title": "From Mention to Merit: Citation Context Analysis of Top Cited Journals in Digital Humanities",
       "authors": [
         "Sandra M K",
         "Rupesh Kumar A"
@@ -14,35 +14,23 @@
       "url": "https://doi.org/10.14429/djlit.21275"
     },
     {
-      "key": "from-mention-to-merit-citation-context-analysis-of-top-cited-journals-in-digital-humanities::2026",
-      "title": "From Mention to Merit: Citation Context Analysis of Top Cited Journals in Digital Humanities",
-      "authors": [
-        "Rupesh Kumar",
-        "Sandra M K"
-      ],
-      "year": "2026",
-      "venue": "DESIDOC Journal of Library and Information Technology",
-      "doi": null,
-      "url": "https://publicationsdrdo.in/index.php/djlit/article/view/21275"
-    },
-    {
       "key": "beyond-citescore-exploring-citation-concentration-in-digital-humanities-journals::2026",
       "title": "Beyond CiteScore: Exploring Citation Concentration in Digital Humanities Journals",
       "authors": [
-        "Rupesh Kumar",
+        "Rupesh Kumar A",
         "Sandra M K"
       ],
       "year": "2026",
       "venue": "Journal of Indian Library Association",
-      "doi": null,
+      "doi": "https://doi.org/10.34256/",
       "url": "https://journal.ilaindia.net/index.php/lib/article/view/896"
     },
     {
       "key": "10.1007/s11192-025-05527-4",
       "title": "Citation dynamics and altmetric trends of retracted publications in Indian-funded research: pre and post retraction analysis",
       "authors": [
-        "Devanath P. R.",
-        "Rupesh Kumar A."
+        "Devanath P R",
+        "Rupesh Kumar A"
       ],
       "year": "2026",
       "venue": "Scientometrics",
@@ -57,7 +45,7 @@
         "Rupesh Kumar A"
       ],
       "year": "2025",
-      "venue": "DESIDOC Journal of Library &amp; Information Technology",
+      "venue": "DESIDOC Journal of Library & Information Technology",
       "doi": "10.14429/djlit.20870",
       "url": "https://doi.org/10.14429/djlit.20870"
     },
@@ -79,8 +67,7 @@
       "title": "Scholarly Literature in Digital Humanities: A Comparative Analysis of Open Access and Non-Open Access Publications",
       "authors": [
         "Sandra M K",
-        "Rupesh Kumar A",
-        "Rupesh Kumar"
+        "Rupesh Kumar A"
       ],
       "year": "2025",
       "venue": "International Journal of Information Studies",
@@ -91,20 +78,20 @@
       "key": "10.56042/alis.v72i3.21229",
       "title": "CSIR-Funded Research in India: Insights from Bibliometric and Altmetric Analysis",
       "authors": [
-        "Devanath, P.R.",
-        "Rupesh Kumar, A."
+        "Devanath P R",
+        "Rupesh Kumar A"
       ],
       "year": "2025",
       "venue": "Annals of Library and Information Studies",
       "doi": "10.56042/alis.v72i3.21229",
-      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-105017984584&partnerID=MN8TOARS"
+      "url": "https://doi.org/10.56042/alis.v72i3.21229"
     },
     {
       "key": "global-research-output-on-gender-equality-insights-from-bibliometric-analysis::2025",
       "title": "Global Research Output on Gender Equality: Insights from Bibliometric Analysis",
       "authors": [
-        "Rupesh Kumar",
-        "Rupesh Kumar"
+        "Mahesh M S",
+        "Rupesh Kumar A"
       ],
       "year": "2025",
       "venue": "6th National Conference on Management of Modern Libraries (NACML)",
@@ -113,7 +100,7 @@
     },
     {
       "key": "10.6025/jism/2024/14/4/165-170",
-      "title": "Uncovering the Trends in Indian Research: Latent Dirichlet Allocation (LDA) Analysis of UGC-funded Publications-",
+      "title": "Uncovering the Trends in Indian Research: Latent Dirichlet Allocation (LDA) Analysis of UGC-funded Publications",
       "authors": [
         "Devanath P R",
         "Rupesh Kumar A"
@@ -151,7 +138,7 @@
       "key": "webometric-analysis-of-national-library-websites-of-saarc-countries::2019",
       "title": "Webometric Analysis of National Library Websites of SAARC Countries",
       "authors": [
-        "Rupesh Kumar A."
+        "Rupesh Kumar A"
       ],
       "year": "2019",
       "venue": "Research Chronicler",
@@ -162,124 +149,10 @@
       "key": "citation-based-transparent-ranking-of-indian-institutes-of-technology::2019",
       "title": "Citation-based Transparent Ranking of Indian Institutes of Technology",
       "authors": [
-        "Kumar, Rupesh"
+        "Rupesh Kumar A"
       ],
       "year": "2019",
-      "venue": null,
-      "doi": null,
+      "venue": "Library Philosophy and Practice,
+      "doi": "https://scholarworks.sjsu.edu/libphilprac/2409/",
       "url": "http://eprints.rclis.org/34465/"
-    },
-    {
-      "key": "10.13140/rg.2.1.2321.3844",
-      "title": "Installation of DSpace, Koha and other software using Liblivecd",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2016",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.2321.3844",
-      "url": "https://doi.org/10.13140/RG.2.1.2321.3844"
-    },
-    {
-      "key": "10.13140/rg.2.1.3822.1281",
-      "title": "Installation of Drupal CMS on Windows using Apache, MySQL and PHP",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2015",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.3822.1281",
-      "url": "https://doi.org/10.13140/RG.2.1.3822.1281"
-    },
-    {
-      "key": "10.13140/rg.2.1.2085.4242",
-      "title": "Installation of Joomla CMS on Windows using Apache, MySQL and PHP",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2015",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.2085.4242",
-      "url": "https://doi.org/10.13140/RG.2.1.2085.4242"
-    },
-    {
-      "key": "10.13140/rg.2.1.4084.2720",
-      "title": "Installation of Wordpress CMS on Windows using EasyPHP",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2015",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.4084.2720",
-      "url": "https://doi.org/10.13140/RG.2.1.4084.2720"
-    },
-    {
-      "key": "10.13140/rg.2.1.4990.1202",
-      "title": "Building Library Circulation in a Content Management System: An experience with Web Librarian",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2014",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.4990.1202",
-      "url": "https://doi.org/10.13140/RG.2.1.4990.1202"
-    },
-    {
-      "key": "10.13140/rg.2.1.1975.4641",
-      "title": "The Social Learning: Integrating social networking in teaching and learning",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2014",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.1975.4641",
-      "url": "https://doi.org/10.13140/RG.2.1.1975.4641"
-    },
-    {
-      "key": "10.13140/rg.2.1.2041.0000",
-      "title": "Wikis for Teachers of English Language",
-      "authors": [
-        "Rupesh Kumar",
-        "Monbinder Kaur"
-      ],
-      "year": "2012",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.2041.0000",
-      "url": "https://doi.org/10.13140/RG.2.1.2041.0000"
-    },
-    {
-      "key": "10.13140/rg.2.1.2978.9840",
-      "title": "Latex and Indian Languages",
-      "authors": [
-        "Rupesh Kumar"
-      ],
-      "year": "2010",
-      "venue": null,
-      "doi": "10.13140/RG.2.1.2978.9840",
-      "url": "https://doi.org/10.13140/RG.2.1.2978.9840"
-    },
-    {
-      "key": "e-learning-2-0::2009",
-      "title": "E-Learning 2.0",
-      "authors": [
-        "Rupesh Kumar A."
-      ],
-      "year": "2009",
-      "venue": "Library Philosophy and Practice",
-      "doi": null,
-      "url": "http://digitalcommons.unl.edu/libphilprac/284"
-    },
-    {
-      "key": "e-learning-2-0-learning-redefined::2009",
-      "title": "E-Learning 2.0: Learning redefined",
-      "authors": [
-        "Rupesh, K.A.",
-        "Rupesh Kumar A."
-      ],
-      "year": "2009",
-      "venue": "Library Philosophy and Practice",
-      "doi": null,
-      "url": "http://www.scopus.com/inward/record.url?eid=2-s2.0-77954131977&partnerID=MN8TOARS"
     }
-  ]
-}
