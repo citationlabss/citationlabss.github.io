@@ -2,7 +2,7 @@
   "generated_at": "2026-07-29T02:49:28.755860+00:00",
   "publications": [
     {
-      "key": "10.14429/djlit.21275",
+      "key": "from-mention-to-merit-citation-context-analysis-of-top-cited-journals-in-digital-humanities::2026",
       "title": "From Mention to Merit: Citation Context Analysis of Top Cited Journals in Digital Humanities",
       "authors": [
         "Sandra M K",
@@ -26,7 +26,7 @@
       "url": "https://journal.ilaindia.net/index.php/lib/article/view/896"
     },
     {
-      "key": "10.1007/s11192-025-05527-4",
+      "key": "citation-dynamics-and-altmetric-trends-of-retracted-publications-in-indian-funded-research-pre-and-post-retraction-analysis::2026",
       "title": "Citation dynamics and altmetric trends of retracted publications in Indian-funded research: pre and post retraction analysis",
       "authors": [
         "Devanath P R",
@@ -38,7 +38,7 @@
       "url": "https://doi.org/10.1007/s11192-025-05527-4"
     },
     {
-      "key": "10.14429/djlit.20870",
+      "key": "citation-inequality-among-top-nirf-ranked-universities::2025",
       "title": "Citation Inequality Among Top NIRF-Ranked Universities",
       "authors": [
         "Simya K",
@@ -50,7 +50,7 @@
       "url": "https://doi.org/10.14429/djlit.20870"
     },
     {
-      "key": "10.62656/sijss.v23i3.1954",
+      "key": "un-sustainable-development-goals-research-insights-from-bibliometric-analysis-of-top-nirf-ranked-universities::2025",
       "title": "UN Sustainable Development Goals Research: Insights from Bibliometric Analysis of Top NIRF-Ranked Universities",
       "authors": [
         "Simya K",
@@ -63,7 +63,7 @@
       "url": "https://doi.org/10.62656/sijss.v23i3.1954"
     },
     {
-      "key": "10.6025/ijis/2025/17/1/29-40",
+      "key": "scholarly-literature-in-digital-humanities-a-comparative-analysis-of-open-access-and-non-open-access-publications::2025",
       "title": "Scholarly Literature in Digital Humanities: A Comparative Analysis of Open Access and Non-Open Access Publications",
       "authors": [
         "Sandra M K",
@@ -75,7 +75,7 @@
       "url": "https://doi.org/10.6025/ijis/2025/17/1/29-40"
     },
     {
-      "key": "10.56042/alis.v72i3.21229",
+      "key": "csir-funded-research-in-india-insights-from-bibliometric-and-altmetric-analysis::2025",
       "title": "CSIR-Funded Research in India: Insights from Bibliometric and Altmetric Analysis",
       "authors": [
         "Devanath P R",
@@ -99,7 +99,18 @@
       "url": "https://www.academia.edu/143704235/Global_Research_Output_on_Gender_Equality_Insights_from_Bibliometric_Analysis"
     },
     {
-      "key": "10.6025/jism/2024/14/4/165-170",
+      "key": "from-text-to-context-exploring-the-citation-dynamics-in-dae-funded-research::2025",
+      "title": "From Text to Context: Exploring the Citation Dynamics in DAE-funded research",
+      "authors": [
+        "Devanath P R"
+      ],
+      "year": "2025",
+      "venue": null,
+      "doi": null,
+      "url": "https://www.researchgate.net/publication/388027671_From_Text_to_Context_Exploring_the_Citation_Dynamics_in_DAE-funded_research"
+    },
+    {
+      "key": "uncovering-the-trends-in-indian-research-latent-dirichlet-allocation-lda-analysis-of-ugc-funded-publications::2024",
       "title": "Uncovering the Trends in Indian Research: Latent Dirichlet Allocation (LDA) Analysis of UGC-funded Publications",
       "authors": [
         "Devanath P R",
@@ -111,7 +122,7 @@
       "url": "https://doi.org/10.6025/jism/2024/14/4/165-170"
     },
     {
-      "key": "10.62656/sijss.v22i3.871",
+      "key": "mapping-the-trajectory-of-indian-social-science-research-a-decadal-bibliometric-analysis::2024",
       "title": "Mapping the Trajectory of Indian Social Science Research: A Decadal Bibliometric Analysis",
       "authors": [
         "Devanath P R",
@@ -123,7 +134,7 @@
       "url": "https://doi.org/10.62656/sijss.v22i3.871"
     },
     {
-      "key": "10.62656/sijss.v22i3.921",
+      "key": "tracing-the-scholarly-footprints-of-digital-humanities-a-comparative-study-on-citations-and-altmetric-attention::2024",
       "title": "Tracing The Scholarly Footprints of Digital Humanities: A Comparative Study on Citations and Altmetric Attention",
       "authors": [
         "Sandra M K",
@@ -152,7 +163,9 @@
         "Rupesh Kumar A"
       ],
       "year": "2019",
-      "venue": "Library Philosophy and Practice,
+      "venue": "Library Philosophy and Practice",
       "doi": "https://scholarworks.sjsu.edu/libphilprac/2409/",
       "url": "http://eprints.rclis.org/34465/"
     }
+  ]
+}
