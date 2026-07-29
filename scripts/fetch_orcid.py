@@ -176,7 +176,7 @@ def main():
         full = full_by_putcode.get(put_code)
         authors = extract_authors(full) if full else []
 
-        key = doi.lower() if doi else slugify_key(title, year)
+        key = slugify_key(title, year)
 
         if key in existing:
             # Already here - from a past sync or a hand edit. Never
