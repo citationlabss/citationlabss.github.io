@@ -442,20 +442,47 @@ section.team > h2{
   max-width:85%;
   line-height:1.35;
 }
+.team-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
 .orcid-btn{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
   background:#3E8479;
   color:#fff;
   text-decoration:none;
   font-family:var(--sans);
-  font-size:13.5px;
+  font-size:13px;
   font-weight:600;
   letter-spacing:.02em;
-  padding:11px 30px;
+  padding:10px 22px;
   border-radius:24px;
-  transition:background .15s ease;
+  transition:background .15s ease, transform .15s ease;
 }
-.orcid-btn:hover{ background:#2E6960; }
+.orcid-btn:hover{ background:#2E6960; transform:translateY(-1px); }
+.orcid-btn:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:2px;
+}
+.orcid-btn.scholar-btn{
+  background:var(--navy);
+}
+.orcid-btn.scholar-btn:hover{ background:var(--navy-deep); }
+.orcid-btn .btn-icon{
+  width:14px;
+  height:14px;
+  flex-shrink:0;
+}
+.orcid-btn.is-disabled{
+  background:#B9B6AC;
+  cursor:not-allowed;
+  pointer-events:none;
+}
 
 /* ---------- Footer ---------- */
 footer{
@@ -639,7 +666,10 @@ footer .wrap{
         <p class="tname">Rupesh Kumar A.</p>
         <p class="tdesignation">Associate Professor</p>
         <p class="tinstitution">Tumkur University</p>
-        <a class="orcid-btn" href="https://orcid.org/0000-0001-8787-6416" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0000-0001-8787-6416" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="https://scholar.google.com/citations?user=QShVeuIAAAAJ&hl=en" target="_blank" rel="noopener">G Scholar &rarr;</a>
+        </div>
       </div>
 
       <div class="team-card">
@@ -647,8 +677,10 @@ footer .wrap{
         <p class="tname">Devanath P R</p>
         <p class="tdesignation">Research Scholar</p>
         <p class="tinstitution">Tumkur University</p>
-        <a class="orcid-btn" href="https://orcid.org/0000-0002-0185-7108" target="_blank" rel="noopener">ORCID &rarr;</a>
-        <p><a class="orcid-btn" href="https://scholar.google.com/citations?hl=en&user=OEaPe3gAAAAJ" target="_blank" rel="noopener">Google Scholar &rarr;</a></p>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0000-0002-0185-7108" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="https://scholar.google.com/citations?hl=en&user=OEaPe3gAAAAJ" target="_blank" rel="noopener">G Scholar &rarr;</a>
+        </div>
       </div>
 
       <div class="team-card">
@@ -656,7 +688,10 @@ footer .wrap{
         <p class="tname">Sandra M K</p>
         <p class="tdesignation">Research Scholar</p>
         <p class="tinstitution">Tumkur University</p>
-        <a class="orcid-btn" href="https://orcid.org/0009-0001-2492-4406" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0009-0001-2492-4406" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="#" target="_blank" rel="noopener">G Scholar &rarr;</a>
+        </div>
       </div>
 
       <div class="team-card">
@@ -664,7 +699,10 @@ footer .wrap{
         <p class="tname">Simya K</p>
         <p class="tdesignation">Research Scholar</p>
         <p class="tinstitution">Tumkur University</p>
-        <a class="orcid-btn" href="https://orcid.org/0009-0008-4297-2138" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0009-0008-4297-2138" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="#" target="_blank" rel="noopener">G Scholar &rarr;</a>
+        </div>
       </div>
 
       <div class="team-card">
@@ -672,7 +710,10 @@ footer .wrap{
         <p class="tname">Vinutha D</p>
         <p class="tdesignation">Designation</p>
         <p class="tinstitution">Institution</p>
-        <a class="orcid-btn" href="0009-0004-4203-4687" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0009-0004-4203-4687" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="#" target="_blank" rel="noopener">Scholar &rarr;</a>
+        </div>
       </div>
 
       <div class="team-card">
@@ -680,7 +721,10 @@ footer .wrap{
         <p class="tname">Soujanya</p>
         <p class="tdesignation">Designation</p>
         <p class="tinstitution">Institution</p>
-         <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="#" target="_blank" rel="noopener">Scholar &rarr;</a>
+        </div>
       </div>
       
       <div class="team-card">
@@ -688,7 +732,10 @@ footer .wrap{
         <p class="tname">Williams Demello</p>
         <p class="tdesignation">Designation</p>
         <p class="tinstitution">Institution</p>
-        <a class="orcid-btn" href="https://orcid.org/0009-0002-3409-3682" target="_blank" rel="noopener">ORCID &rarr;</a>
+        <div class="team-links">
+          <a class="orcid-btn" href="https://orcid.org/0009-0002-3409-3682" target="_blank" rel="noopener">ORCID &rarr;</a>
+          <a class="orcid-btn scholar-btn" href="#" target="_blank" rel="noopener">Scholar &rarr;</a>
+        </div>
       </div>
 
     </div>
