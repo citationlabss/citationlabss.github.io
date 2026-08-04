@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Citation Labs</title>
+<title>CitationLabs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -55,16 +55,18 @@ body{ padding-top:40px; } /* offset for fixed topbar */
   max-width:1080px;
   margin:0 auto;
   padding:0 32px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:20px;
+  flex-wrap:wrap;
 }
 .topbar .wrap a{
   color:#EFF3F9;
   text-decoration:none;
   letter-spacing:.06em;
   transition:color .15s ease;
+  cursor:pointer;
 }
 .topbar .wrap a:hover{ color:var(--gold); }
 .topbar-links{
@@ -72,19 +74,18 @@ body{ padding-top:40px; } /* offset for fixed topbar */
   align-items:center;
   gap:20px;
 }
-.topbar-links.right{ justify-content:flex-end; }
 
 /* ---------- Topbar search ---------- */
 .topbar-search{
   display:flex;
-  justify-content:center;
+  justify-content:flex-start;
 }
 .topbar-search form{
   position:relative;
   display:flex;
   align-items:center;
   width:100%;
-  max-width:300px;
+  max-width:260px;
 }
 .topbar-search input[type="search"]{
   width:100%;
@@ -508,16 +509,15 @@ footer .wrap{
 
 <div class="topbar">
   <div class="wrap">
-    <div class="topbar-links">
-      <a href="#labs">CITATION LABS</a>
-    </div>
     <div class="topbar-search">
       <form id="site-search-form" role="search" autocomplete="off">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <input type="search" id="site-search-input" placeholder="Search..." aria-label="Search site content">
       </form>
     </div>
-    <div class="topbar-links right">
+    <div class="topbar-links">
+      <a href="#top" id="home-link">HOME</a>
+      <a href="#labs">CITATION LABS</a>
       <a href="#team">TEAM</a>
     </div>
   </div>
@@ -726,7 +726,7 @@ footer .wrap{
           <a class="orcid-btn scholar-btn" href="https://scholar.google.com/citations?user=zA-lGggAAAAJ&hl=en" target="_blank" rel="noopener">Scholar &rarr;</a>
         </div>
       </div>
-      
+
       <div class="team-card">
         <img class="avatar" src="images/team/williams.jpeg" alt="Williams">
         <p class="tname">Williams Demello</p>
@@ -759,6 +759,22 @@ footer .wrap{
       .replace(/>/g, '&gt;');
   }
 
+  // Re-scrolls to the current #hash target, if any. Needed because the
+  // publication lists are injected asynchronously (after fetch), which
+  // shifts page layout AFTER the browser's initial hash-scroll already
+  // happened. Without this, landing on e.g. #team via a direct link or
+  // refresh drifts to the wrong position once the content above it grows.
+  function reapplyHashScroll(){
+    if (!location.hash) return;
+    const target = document.querySelector(location.hash);
+    if (!target) return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.scrollIntoView();
+      });
+    });
+  }
+
   async function loadPublications(){
     const containers = document.querySelectorAll('.pub-list');
     if (!containers.length) return;
@@ -776,6 +792,7 @@ footer .wrap{
       containers.forEach(c => {
         c.innerHTML = '<p class="pub-empty">Publications could not be loaded.</p>';
       });
+      reapplyHashScroll();
       return;
     }
 
@@ -812,6 +829,9 @@ footer .wrap{
         </div>`;
       }).join('');
     });
+
+    // Content heights have now settled — fix up the scroll position.
+    reapplyHashScroll();
   }
 
   loadPublications();
@@ -892,6 +912,19 @@ footer .wrap{
   }
 
   setupSiteSearch();
+
+  // Home: does a real page reload (not just a smooth scroll) and drops
+  // the hash, so it always lands at the very top of a fresh page load.
+  function setupHomeLink(){
+    const homeLink = document.getElementById('home-link');
+    if (!homeLink) return;
+    homeLink.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = window.location.pathname + window.location.search;
+    });
+  }
+
+  setupHomeLink();
 })();
 </script>
 
