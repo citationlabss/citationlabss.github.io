@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T08:29:06.921126+00:00",
+  "generated_at": "2026-08-31T04:21:44.945986+00:00",
   "publications": [
     {
       "key": "from-mention-to-merit-citation-context-analysis-of-top-cited-journals-in-digital-humanities::2026",
@@ -61,6 +61,18 @@
       "venue": "DESIDOC Journal of Library & Information Technology",
       "doi": "10.14429/djlit.21275",
       "url": "https://doi.org/10.14429/djlit.21275"
+    },
+    {
+      "key": "a-bibliometric-assessment-of-gender-equality-research-in-south-asia::2026",
+      "title": "A Bibliometric Assessment of Gender Equality Research in South Asia",
+      "authors": [
+        "Rupesh Kumar",
+        "Mahesh M S"
+      ],
+      "year": "2026",
+      "venue": "Journal of Library Development",
+      "doi": null,
+      "url": "https://informaticsjournals.co.in/index.php/JLD/article/view/56314"
     },
     {
       "key": "citation-inequality-among-top-nirf-ranked-universities::2025",
