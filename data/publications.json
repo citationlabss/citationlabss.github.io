@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:44:39.331520+00:00",
+  "generated_at": "2026-10-29T04:39:27.463044+00:00",
   "publications": [
     {
       "key": "from-mention-to-merit-citation-context-analysis-of-top-cited-journals-in-digital-humanities::2026",
@@ -73,6 +73,18 @@
       "venue": "Journal of Library Development",
       "doi": "10.32344/jld/v12/i2/2026/23-44",
       "url": "https://informaticsjournals.co.in/index.php/JLD/article/view/56314"
+    },
+    {
+      "key": "gender-disparity-in-library-and-information-science-research-a-decadal-analysis-of-lead-authorship-and-citation-impact::2026",
+      "title": "Gender disparity in library and information science research: A decadal analysis of lead authorship and citation impact",
+      "authors": [
+        "Sadhana P Naik",
+        "Rupesh Kumar A"
+      ],
+      "year": "2026",
+      "venue": "IP Indian Journal of Library Science and Information Technology",
+      "doi": "10.18231/j.ijlsit.18153.1788932517",
+      "url": "https://doi.org/10.18231/j.ijlsit.18153.1788932517"
     },
     {
       "key": "citation-inequality-among-top-nirf-ranked-universities::2025",
